@@ -6,21 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>学习Markdown语言 | Shenjie Blog</title>
+  <title>git | Shenjie Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一级标题这是我新建的blog这是一级标题你好你好你好 你好*nihao*姓名|年龄|学号—|:-:|-:wa|gh|jkgfdh|fd|vc 这是代码  zheyeshi daima 1zheshi daima kuai  create database hero; ““”    vi /Blog/text/nihao.md”“”  第一点    第一小点 第二小店 第三小店   第二点 第一">
+  <meta name="description" content="把檔案交給 Git 控管在上個章節我們對目錄進行了 Git 的初始化，讓 Git 開始可以管理這個目錄，接下來，我們就來看看 Git 是怎麼操作的。 把檔案交給 Git在開始之前，我想先介紹 git status 這個指令。這個指令的用途是用來查詢現在這個目錄的「狀態」，先在剛剛建立的 git-practice 目錄下執行這個指令： $ git statusOn branch master Ini">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习Markdown语言">
-<meta property="og:url" content="http://yoursite.com/2019/09/06/config/index.html">
+<meta property="og:title" content="git">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/git/index.html">
 <meta property="og:site_name" content="Shenjie Blog">
-<meta property="og:description" content="这是一级标题这是我新建的blog这是一级标题你好你好你好 你好*nihao*姓名|年龄|学号—|:-:|-:wa|gh|jkgfdh|fd|vc 这是代码  zheyeshi daima 1zheshi daima kuai  create database hero; ““”    vi /Blog/text/nihao.md”“”  第一点    第一小点 第二小店 第三小店   第二点 第一">
+<meta property="og:description" content="把檔案交給 Git 控管在上個章節我們對目錄進行了 Git 的初始化，讓 Git 開始可以管理這個目錄，接下來，我們就來看看 Git 是怎麼操作的。 把檔案交給 Git在開始之前，我想先介紹 git status 這個指令。這個指令的用途是用來查詢現在這個目錄的「狀態」，先在剛剛建立的 git-practice 目錄下執行這個指令： $ git statusOn branch master Ini">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/09/06/config/cat.jpeg">
-<meta property="og:updated_time" content="2019-09-06T07:05:18.000Z">
+<meta property="og:updated_time" content="2019-09-09T02:44:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习Markdown语言">
-<meta name="twitter:description" content="这是一级标题这是我新建的blog这是一级标题你好你好你好 你好*nihao*姓名|年龄|学号—|:-:|-:wa|gh|jkgfdh|fd|vc 这是代码  zheyeshi daima 1zheshi daima kuai  create database hero; ““”    vi /Blog/text/nihao.md”“”  第一点    第一小点 第二小店 第三小店   第二点 第一">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/06/config/cat.jpeg">
+<meta name="twitter:title" content="git">
+<meta name="twitter:description" content="把檔案交給 Git 控管在上個章節我們對目錄進行了 Git 的初始化，讓 Git 開始可以管理這個目錄，接下來，我們就來看看 Git 是怎麼操作的。 把檔案交給 Git在開始之前，我想先介紹 git status 這個指令。這個指令的用途是用來查詢現在這個目錄的「狀態」，先在剛剛建立的 git-practice 目錄下執行這個指令： $ git statusOn branch master Ini">
   
   
     <link rel="icon" href="/favicon.png">
@@ -156,184 +155,86 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-config" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-git" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      学习Markdown语言
+      git
     </h1>
   
 
         
-        <a href="/2019/09/06/config/" class="archive-article-date">
-  	<time datetime="2019-09-06T06:25:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+        <a href="/2019/09/09/git/" class="archive-article-date">
+  	<time datetime="2019-09-09T02:43:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是我新建的blog"><a href="#这是我新建的blog" class="headerlink" title="这是我新建的blog"></a>这是我新建的blog</h2><h2 id="这是一级标题-1"><a href="#这是一级标题-1" class="headerlink" title="这是一级标题"></a>这是一级标题</h2><p><em>你好</em><br><strong>你好</strong><br><strong><em>你好</em></strong></p>
-<h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a><del>你好</del></h2><p>*nihao*<br>姓名|年龄|学号<br>—|:-:|-:<br>wa|gh|jkgf<br>dh|fd|vc</p>
-<p><code>这是代码</code></p>
-<hr>
-<p>zheyeshi daima</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zheshi daima kuai</span><br></pre></td></tr></table></figure>
-
-<p><code>create database hero;</code></p>
-<p>““”<br>    vi /Blog/text/nihao.md<br>”“”</p>
+        <p>把檔案交給 Git 控管<br>在上個章節我們對目錄進行了 Git 的初始化，讓 Git 開始可以管理這個目錄，接下來，我們就來看看 Git 是怎麼操作的。</p>
+<p>把檔案交給 Git<br>在開始之前，我想先介紹 git status 這個指令。這個指令的用途是用來查詢現在這個目錄的「狀態」，先在剛剛建立的 git-practice 目錄下執行這個指令：</p>
+<p>$ git status<br>On branch master</p>
+<p>Initial commit</p>
+<p>nothing to commit (create/copy files and use “git add” to track)<br>在這個目錄裡，現在除了 Git 幫你產生的那個 .git 隱藏目錄外什麼都沒有，所以上面這段訊息就是要跟你說「現在沒東西可以提交（nothing to commit）」。接下來，在這個目錄裡透過系統指令建立一個內容為 “hello, git” 並命名為 welcome.html 的檔案：</p>
+<p>$ echo “hello, git” &gt; welcome.html<br>這個步驟要用一般的文字編輯器或檔案管理員來完成也沒關係，總之就是在這個目錄裡建立一個叫做 welcome.html 的檔案就行了。接著，我們再次使用 git status 指令，來看一下這個目錄的狀態：</p>
+<p>$ git status<br>On branch master</p>
+<p>Initial commit</p>
+<p>Untracked files:<br>  (use “git add <file>…” to include in what will be committed)</file></p>
+<pre><code>welcome.html</code></pre><p>nothing added to commit but untracked files present (use “git add” to track)<br>或是使用 SourceTree 來看：</p>
+<p>image</p>
+<p>這時候的狀態跟剛才一開始不太一樣了，現在可以看到這個 welcome.html 檔案目前的狀態是 Untracked files，意思是這個檔案尚未被加到 Git 版控系統裡，還沒開始正式被 Git「追蹤」，它只是剛剛才加入這個目錄而已。</p>
+<p>把檔案交給 Git<br>既然目前這個檔案是 Untracked，接下來就是要把 welcome.html 這個檔案交給 Git，讓 Git 開始「追蹤」它，使用的指令是 git add 後面加上檔案名稱：</p>
+<p>$ git add welcome.html<br>在終端機執行這個指令不會有任何的輸出結果，如果是使用 SourceTree，可以在那個檔案上按滑鼠右鍵，然後選擇「Add to index」：</p>
+<p>image</p>
+<p>就可以把這個檔案交給 Git 來管控了。再次使用 git status 指令看一下目前的狀態：</p>
+<p>$ git status<br>On branch master</p>
+<p>Initial commit</p>
+<p>Changes to be committed:<br>  (use “git rm –cached <file>…” to unstage)</file></p>
+<pre><code>new file:   welcome.html</code></pre><p>有注意到嗎？剛才那個檔案從 Untracked 變成 new file 狀態了。這個表示這個檔案已經被安置到暫存區（Staging Area），等待稍後跟其它檔案一起被存到儲存庫裡。</p>
+<p>而這個暫存區也稱之索引（index），所以在上圖中，SourceTree 的選單才會用「Add to index」字樣。基本上暫存區跟索引是一樣的意思。為了讓大家比較方便理解，本書將統一使用「暫存區」的用法。至於為什麼要有這樣的設計，請見下一章「工作區、暫存區與儲存庫」的介紹。</p>
+<p>小提示<br>其實這個 add 指令看起來很簡單，但背後 Git 其實幫你做了不少事，詳情請參閱「【超冷知識】在 .git 目錄裡有什麼東西？Part 1」章節說明。</p>
+<p>如果你覺得 git add welcome.html 這樣一次只加一個檔案有點麻煩，你也可以使用萬用字元（wildcard character）：</p>
+<p>$ git add *.html<br>就可把所有附檔名是 html 的檔案全部都加到暫存區。而如果想要一口氣把全部的檔案加到暫存區，可直接使用 –all 參數：</p>
+<p>$ git add –all<br>【狀況題】如果在 git add 之後又修改了那個檔案的內容？<br>想像一下這個情境：</p>
+<p>你新增了一個檔案叫做 abc.txt。<br>然後，執行 git add abc.txt 把檔案加至暫存區。<br>接著編輯 abc.txt 檔案。<br>完成編輯後，接著你可能會想要進行 Commit，把剛剛修改的內容存下來。這是新手可能會犯的錯誤之一，以為 Commit 指令就會把所有的異動都存下來，事實上這樣的想法是不太正確的。執行一下 git status 指令，看一下目前的狀態：</p>
+<p>$ git status<br>On branch master<br>Changes to be committed:<br>  (use “git reset HEAD <file>…” to unstage)</file></p>
+<pre><code>new file:   abc.txt</code></pre><p>Changes not staged for commit:<br>  (use “git add <file>…” to update what will be committed)<br>  (use “git checkout – <file>…” to discard changes in working directory)</file></file></p>
+<pre><code>modified:   abc.txt</code></pre><p>咦？你發現 abc.txt 這個檔案變成 2 個了嗎？其實你在第 2 步的確有把 abc.txt 加到暫存區沒錯，但你在第 3 步又編輯了那個檔案，對 Git 來說，編輯的內容並沒有再次被加到暫存區，所以這時候在暫存區裡的資料還是你在第 2 步時候加進來的那個檔案。</p>
+<p>如果確定這個修改是你要的，就請再次使用 git add abc.txt 指令，再把 abc.txt 加至暫存區。</p>
+<p>豆知識<br>其實這樣的動作會產生一些 Unreachable 的沒人愛邊緣物件，這部份算是比較進階的內容，有興趣可參閱「【冷知識】你知道 Git 有資源回收機制嗎？」章節內容。</p>
+<p>【冷知識】”–all” 跟 “.” 參數有什麼不一樣？<br>有時候會看到別人說「git add . 指令也可以把所有的檔案全部加到暫存區喔！」，這樣的說法其實不完全正確，這得看以下幾種情況而決定：</p>
 <ol>
-<li>第一点   <ol>
-<li>第一小点</li>
-<li>第二小店</li>
-<li>第三小店</li>
+<li>Git 版本<br>在比較舊版本（1.x 版）的 Git， git add . 這個指令會把「新增的檔案」（也就是 Untracked 狀態的檔案）以及有「修改過的檔案」加到暫存區沒錯，但是不會處理「刪除檔案」的行為。讓我畫個表格簡單說明一下：</li>
 </ol>
-</li>
-<li>第二点<ol>
-<li>第一小点</li>
+<p>使用參數    新增檔案    修改檔案    刪除檔案<br>–all    O    O    O<br>.    O    O    X<br>不過，在 Git 2.x 版之後變成這樣：</p>
+<p>使用參數    新增檔案    修改檔案    刪除檔案<br>–all    O    O    O<br>.    O    O    O<br>也就是說，在 Git 2.x 之後，這兩個參數在功能上就沒什麼差別了。</p>
+<ol start="2">
+<li>執行指令時候的目錄位置<br>舉個例子來說：</li>
 </ol>
-</li>
-</ol>
-<p>1.第一点</p>
-<h2 id="这是对的"><a href="#这是对的" class="headerlink" title="这是对的"></a>这是对的</h2><p>2.第二点</p>
-<h2 id="这是不对的"><a href="#这是不对的" class="headerlink" title="这是不对的"></a>这是不对的</h2><p>3.第三点</p>
-<h2 id="这是正确的"><a href="#这是正确的" class="headerlink" title="这是正确的"></a>这是正确的</h2><p><img src="/2019/09/06/config/cat.jpeg" alt="cat"></p>
-<p><a href="http://blog.wangshenjie.us" target="_blank" rel="noopener">nihao</a>&gt;Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
-<blockquote>
-<blockquote>
-<p>相比WYSIWYG编辑器</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>优点：<br>1、因为是纯文本，所以只要支持Markdown的地方都能获得一样的编辑效果，可以让作者摆脱排版的困扰，专心写作。<br>2、操作简单。比如:WYSIWYG编辑时标记个标题，先选中内容，再点击导航栏的标题按钮，选择几级标题。要三个步骤。而Markdown只需要在标题内容前加#即可</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>缺点：<br>1、需要记一些语法（当然，是很简单。五分钟学会）。<br>2、有些平台不支持Markdown编辑模式。</p>
-<p>还好，简书是支持Markdown编辑模式的。</p>
-<p>开启方式：设置-&gt;默认编辑器-&gt;Markdown编辑器<br>一、标题<br>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。</p>
-<p>注：标准语法一般在#后跟个空格再写文字，貌似简书不加空格也行。</p>
-<p>示例：</p>
-<h1 id="这是一级标题-2"><a href="#这是一级标题-2" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><p>效果如下：</p>
-<p>这是一级标题<br>这是二级标题<br>这是三级标题<br>这是四级标题<br>这是五级标题<br>这是六级标题<br>二、字体<br>加粗<br>要加粗的文字左右分别用两个*号包起来</p>
-<p>斜体<br>要倾斜的文字左右分别用一个*号包起来</p>
-<p>斜体加粗<br>要倾斜和加粗的文字左右分别用三个*号包起来</p>
-<p>删除线<br>要加删除线的文字左右分别用两个~~号包起来</p>
-<p>示例：</p>
-<p><strong>这是加粗的文字</strong><br><em>这是倾斜的文字</em>`<br><strong><em>这是斜体加粗的文字</em></strong><br><del>这是加删除线的文字</del><br>效果如下：</p>
-<p>这是加粗的文字<br>这是倾斜的文字<br>这是斜体加粗的文字<br>这是加删除线的文字</p>
-<p>三、引用<br>在引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;<br>n个…<br>貌似可以一直加下去，但没神马卵用</p>
-<p>示例：</p>
-<blockquote>
-<p>这是引用的内容<br>这是引用的内容<br>这是引用的内容<br>效果如下：</p>
-</blockquote>
-<p>这是引用的内容</p>
-<p>这是引用的内容</p>
-<p>这是引用的内容</p>
-<p>四、分割线<br>三个或者三个以上的 - 或者 * 都可以。</p>
-<p>示例：</p>
-<hr>
-<hr>
-<hr>
-<hr>
-<p>效果如下：<br>可以看到，显示效果是一样的。</p>
-<p>五、图片<br>语法：</p>
-<p>![图片alt](图片地址 ‘’图片title’’)</p>
-<p>图片alt就是显示在图片下面的文字，相当于对图片内容的解释。<br>图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加<br>示例：</p>
-<p>![blockchain](<a href="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/" target="_blank" rel="noopener">https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/</a><br>u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg “区块链”)<br>效果如下：</p>
-<p>blockchain<br>上传本地图片直接点击导航栏的图片标志，选择图片即可</p>
-<p>六、超链接<br>语法：</p>
-<p><a href="超链接地址" title="超链接title">超链接名</a><br>title可加可不加<br>示例：</p>
-<p><a href="http://jianshu.com" target="_blank" rel="noopener">简书</a><br><a href="http://baidu.com" target="_blank" rel="noopener">百度</a><br>效果如下：</p>
-<p>简书<br>百度</p>
-<p>注：Markdown本身语法不支持链接在新页面中打开，貌似简书做了处理，是可以的。别的平台可能就不行了，如果想要在新页面中打开的话可以用html语言的a标签代替。</p>
-<p><a href="超链接地址" target="_blank">超链接名</a></p>
-<p>示例<br><a href="https://www.jianshu.com/u/1f5ac0cf6a8b" target="_blank">简书</a><br>七、列表<br>无序列表<br>语法：<br>无序列表用 - + * 任何一种都可以</p>
-<ul>
-<li>列表内容</li>
-</ul>
-<ul>
-<li>列表内容</li>
-</ul>
-<ul>
-<li>列表内容</li>
-</ul>
-<p>注意：- + * 跟内容之间都要有一个空格</p>
-<p>效果如下：</p>
-<p>列表内容<br>列表内容<br>列表内容<br>有序列表<br>语法：<br>数字加点</p>
-<p>1.列表内容<br>2.列表内容<br>3.列表内容</p>
-<p>注意：序号跟内容之间要有空格<br>效果如下：</p>
-<p>1.列表内容<br>2.列表内容<br>3.列表内容</p>
-<p>列表嵌套<br>上一级和下一级之间敲三个空格即可</p>
-<p>一级无序列表内容</p>
-<p>二级无序列表内容<br>二级无序列表内容<br>二级无序列表内容<br>一级无序列表内容</p>
-<p>二级有序列表内容<br>二级有序列表内容<br>二级有序列表内容<br>一级有序列表内容</p>
-<p>二级无序列表内容<br>二级无序列表内容<br>二级无序列表内容<br>一级有序列表内容</p>
-<p>二级有序列表内容<br>二级有序列表内容<br>二级有序列表内容<br>八、表格<br>语法：</p>
-<table>
-<thead>
-<tr>
-<th>表头</th>
-<th align="center">表头</th>
-<th align="right">表头</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>内容</td>
-<td align="center">内容</td>
-<td align="right">内容</td>
-</tr>
-<tr>
-<td>内容</td>
-<td align="center">内容</td>
-<td align="right">内容</td>
-</tr>
-</tbody></table>
-<p>第二行分割表头和内容。</p>
-<ul>
-<li>有一个就行，为了对齐，多加了几个<br>文字默认居左</li>
-<li>两边加：表示文字居中</li>
-<li>右边加：表示文字居右<br>注：原生的语法两边都要用 | 包起来。此处省略<br>示例：</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th align="center">技能</th>
-<th align="right">排行</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>刘备</td>
-<td align="center">哭</td>
-<td align="right">大哥</td>
-</tr>
-<tr>
-<td>关羽</td>
-<td align="center">打</td>
-<td align="right">二哥</td>
-</tr>
-<tr>
-<td>张飞</td>
-<td align="center">骂</td>
-<td align="right">三弟</td>
-</tr>
-<tr>
-<td>效果如下：</td>
-<td align="center"></td>
-<td align="right"></td>
-</tr>
-</tbody></table>
-<p>姓名    技能    排行<br>刘备    哭    大哥<br>关羽    打    二哥<br>张飞    骂    三弟<br>九、代码<br>语法：<br>单行代码：代码之间分别用一个反引号包起来</p>
-<pre><code>`代码内容`</code></pre><p>代码块：代码之间分别用三个反引号包起来，且两边的反引号单独占一行</p>
-<p>(<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">  代码...</span><br><span class="line">  代码...</span><br><span class="line">  代码...</span><br><span class="line">(```)</span><br><span class="line">注：为了防止转译，前后三个反引号处加了小括号，实际是没有的。这里只是用来演示，实际中去掉两边小括号即可。</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"></span><br><span class="line">单行代码</span><br><span class="line"></span><br><span class="line">`create database hero;`</span><br><span class="line">代码块</span><br><span class="line"></span><br><span class="line">(```)</span><br><span class="line">    function fun()&#123;</span><br><span class="line">         echo &quot;这是一句非常牛逼的代码&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    fun();</span><br><span class="line">(```)</span><br><span class="line">效果如下：</span><br><span class="line"></span><br><span class="line">单行代码</span><br><span class="line"></span><br><span class="line">create database hero;</span><br><span class="line"></span><br><span class="line">代码块</span><br><span class="line"></span><br><span class="line">function fun()&#123;</span><br><span class="line">  echo &quot;这是一句非常牛逼的代码&quot;;</span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br><span class="line">十、流程图</span><br><span class="line">```flow</span><br><span class="line">st=&gt;start: 开始</span><br><span class="line">op=&gt;operation: My Operation</span><br><span class="line">cond=&gt;condition: Yes or No?</span><br><span class="line">e=&gt;end</span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br><span class="line">&amp;</span><br></pre></td></tr></table></figure></p>
-<p>效果如下：<br>简书不支持流程图，所以截了个图</p>
-<p>流程图.png</p>
+<p>image</p>
+<p>在專案的根目錄的 index.html 以及在 css 目錄的 main.css 都有修改，如果是在根目錄執行 git add .，這兩個檔案都會被加進暫存區，但如果是在 css 目錄下執行，僅會加入 main.css，index.html 的狀態不會改變。</p>
+<p>那是因為 git add . 這個指令會把目前當下這個目錄，以及它的子目錄、子子目錄、子子子目錄…裡的異動全部加到暫存區，但在這個目錄的以外的就不歸它管了。而 git add –all 指令就沒這個問題，這個指令不管在專案的哪一層目錄執行，效果都是一樣的，在這個專案裡所有的異動都會被加至暫存區。</p>
+<p>所以，回到原來的問題「–all 跟 . 參數有什麼不一樣？」，答案會跟所使用的 Git 版本不同以及執行指令時的目錄而有所差異。</p>
+<p>把暫存區的內容提交到倉庫裡存檔<br>如果僅是透過 git add 指令把異動加到暫存區是不夠的，這樣還不算是完成整個流程。要讓暫存區的內容永久的存下來的話，使用的是 git commit 指令：</p>
+<p>$ git commit -m “init commit”<br>[master (root-commit) dfccf0c] init commit<br> 1 file changed, 1 insertion(+)<br> create mode 100644 welcome.html<br>在後面加上的 -m “init commit” 是指要要說明「你在這次的 Commit 做了什麼事」，只要使用簡單、清楚的文字說明就好，中、英文都可，重點是清楚，讓不久之後的你或是你的同事能很快的明白就行了。</p>
+<p>如果是使用 SourceTree，可點擊左上角的「Commit」按鈕，就可以開始輸入訊息：</p>
+<p>image</p>
+<p>輸入完訊息，按下右下角的「Commit」按鈕，即可完成這次的 Commit。</p>
+<p>當完成了這個動作後，對 Git 來說就是「把暫存區的東西存放到儲存庫（Repository）裡」，翻譯成白話文就是「我完成一個存檔（或備份）的動作了」，也是建立了一個我們在第一個章節所提到的「版本」。關於儲存庫，我們會在下個章節「工作區、暫存區與儲存庫」介紹。</p>
+<p>注意！<br>要完成 Commit 指令才算是完成整個流程喔！</p>
+<p>到底 Commit 了哪些東西？<br>請先記住一個很重要的觀念：「Git 每次的 Commit 都只會處理暫存區（Staging Area）裡的內容」。也就是說，如果在執行 git commit 指令的時候，那些還沒被加到暫存區裡的檔案，就不會被 Commit 到儲存庫裡。</p>
+<p>舉例來說，如果你新增了一個檔案，但卻沒有執行 git add 指令把這個檔案加至暫存區的話，在執行 git commit 指令的時候那個檔案就會被無視喔。</p>
+<p>那個訊息是什麼？很重要嗎？<br>對，很重要！很重要！很重要！（因為重要所以要說三次）</p>
+<p>在 Commit 的時候，如果沒有輸入這個訊息，Git 預設是不會讓你完成 Commit 這件事的。它最主要的目的就是告訴你自己以及其它人「這次的修改做了什麼」。以下是幾點關於訊息的建議：</p>
+<p>儘量不要使用太過情緒性的字眼（我知道開發者有時候工作會有低潮或遇到澳州來的客人），避免不必要的問題。<br>英文、中文都沒關係，重點是要簡單、清楚。<br>儘量不要使用像 bug fixed 這樣模糊的描述，因為沒人知道你修了什麼 bug。但如果有搭配其它的系統使用，則可使用 #34 bug fixed，因為這樣可以知道這次的 Commit 修正了第 34 號的 bug。<br>等等，我怎麼跳出一個奇怪的視窗了<br>在執行 commit 指令時，如果沒有在後面加上訊息參數，預設會跳出一個黑黑的畫面，那個就是傳說中的編輯器 - Vim。那是個對新手不太友善的編輯器，各位可參考「超精簡 Vim 操作介紹」章節的介紹，或是直接使用 SourceTree 之類的圖形介面軟體來處理輸入提交訊息的問題。</p>
+<p>【冷知識】一定要有東西才能 Commit 嗎？<br>只要加上 –allow-empty 參數，沒東西也是可以 Commit 的：</p>
+<p>$ git commit –allow-empty -m “空的”<br>[master 76a5b84] 空的</p>
+<p>$ git commit –allow-empty -m “空的”<br>[master f4f568c] 空的</p>
+<p>$ git commit –allow-empty -m “空的”<br>[master 7653117] 空的<br>這樣就做了 3 個空的 Commit 出來，基本上這沒什麼意義，但有時候我們在上 Git 課的時候就會滿方便的，可以不用新增檔案就快速產生 Commit 來練習合併。</p>
 
       
 
@@ -363,6 +264,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -413,7 +325,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/06/config/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/09/git/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -427,18 +339,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/06/shouye/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          首页
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/06/git 命令/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">git命令</div>
+    <a href="/2019/09/06/contact/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">aiyibushiaiyi</div>
       <i class="icon-circle-right"></i>
     </a>
   

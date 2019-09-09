@@ -152,6 +152,139 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/09/git/">git</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/09/git/" class="archive-article-date">
+  	<time datetime="2019-09-09T02:43:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>把檔案交給 Git 控管<br>在上個章節我們對目錄進行了 Git 的初始化，讓 Git 開始可以管理這個目錄，接下來，我們就來看看 Git 是怎麼操作的。</p>
+<p>把檔案交給 Git<br>在開始之前，我想先介紹 git status 這個指令。這個指令的用途是用來查詢現在這個目錄的「狀態」，先在剛剛建立的 git-practice 目錄下執行這個指令：</p>
+<p>$ git status<br>On branch master</p>
+<p>Initial commit</p>
+<p>nothing to commit (create/copy files and use “git add” to track)<br>在這個目錄裡，現在除了 Git 幫你產生的那個 .git 隱藏目錄外什麼都沒有，所以上面這段訊息就是要跟你說「現在沒東西可以提交（nothing to commit）」。接下來，在這個目錄裡透過系統指令建立一個內容為 “hello, git” 並命名為 welcome.html 的檔案：</p>
+<p>$ echo “hello, git” &gt; welcome.html<br>這個步驟要用一般的文字編輯器或檔案管理員來完成也沒關係，總之就是在這個目錄裡建立一個叫做 welcome.html 的檔案就行了。接著，我們再次使用 git status 指令，來看一下這個目錄的狀態：</p>
+<p>$ git status<br>On branch master</p>
+<p>Initial commit</p>
+<p>Untracked files:<br>  (use “git add <file>…” to include in what will be committed)</file></p>
+<pre><code>welcome.html</code></pre><p>nothing added to commit but untracked files present (use “git add” to track)<br>或是使用 SourceTree 來看：</p>
+<p>image</p>
+<p>這時候的狀態跟剛才一開始不太一樣了，現在可以看到這個 welcome.html 檔案目前的狀態是 Untracked files，意思是這個檔案尚未被加到 Git 版控系統裡，還沒開始正式被 Git「追蹤」，它只是剛剛才加入這個目錄而已。</p>
+<p>把檔案交給 Git<br>既然目前這個檔案是 Untracked，接下來就是要把 welcome.html 這個檔案交給 Git，讓 Git 開始「追蹤」它，使用的指令是 git add 後面加上檔案名稱：</p>
+<p>$ git add welcome.html<br>在終端機執行這個指令不會有任何的輸出結果，如果是使用 SourceTree，可以在那個檔案上按滑鼠右鍵，然後選擇「Add to index」：</p>
+<p>image</p>
+<p>就可以把這個檔案交給 Git 來管控了。再次使用 git status 指令看一下目前的狀態：</p>
+<p>$ git status<br>On branch master</p>
+<p>Initial commit</p>
+<p>Changes to be committed:<br>  (use “git rm –cached <file>…” to unstage)</file></p>
+<pre><code>new file:   welcome.html</code></pre><p>有注意到嗎？剛才那個檔案從 Untracked 變成 new file 狀態了。這個表示這個檔案已經被安置到暫存區（Staging Area），等待稍後跟其它檔案一起被存到儲存庫裡。</p>
+<p>而這個暫存區也稱之索引（index），所以在上圖中，SourceTree 的選單才會用「Add to index」字樣。基本上暫存區跟索引是一樣的意思。為了讓大家比較方便理解，本書將統一使用「暫存區」的用法。至於為什麼要有這樣的設計，請見下一章「工作區、暫存區與儲存庫」的介紹。</p>
+<p>小提示<br>其實這個 add 指令看起來很簡單，但背後 Git 其實幫你做了不少事，詳情請參閱「【超冷知識】在 .git 目錄裡有什麼東西？Part 1」章節說明。</p>
+<p>如果你覺得 git add welcome.html 這樣一次只加一個檔案有點麻煩，你也可以使用萬用字元（wildcard character）：</p>
+<p>$ git add *.html<br>就可把所有附檔名是 html 的檔案全部都加到暫存區。而如果想要一口氣把全部的檔案加到暫存區，可直接使用 –all 參數：</p>
+<p>$ git add –all<br>【狀況題】如果在 git add 之後又修改了那個檔案的內容？<br>想像一下這個情境：</p>
+<p>你新增了一個檔案叫做 abc.txt。<br>然後，執行 git add abc.txt 把檔案加至暫存區。<br>接著編輯 abc.txt 檔案。<br>完成編輯後，接著你可能會想要進行 Commit，把剛剛修改的內容存下來。這是新手可能會犯的錯誤之一，以為 Commit 指令就會把所有的異動都存下來，事實上這樣的想法是不太正確的。執行一下 git status 指令，看一下目前的狀態：</p>
+<p>$ git status<br>On branch master<br>Changes to be committed:<br>  (use “git reset HEAD <file>…” to unstage)</file></p>
+<pre><code>new file:   abc.txt</code></pre><p>Changes not staged for commit:<br>  (use “git add <file>…” to update what will be committed)<br>  (use “git checkout – <file>…” to discard changes in working directory)</file></file></p>
+<pre><code>modified:   abc.txt</code></pre><p>咦？你發現 abc.txt 這個檔案變成 2 個了嗎？其實你在第 2 步的確有把 abc.txt 加到暫存區沒錯，但你在第 3 步又編輯了那個檔案，對 Git 來說，編輯的內容並沒有再次被加到暫存區，所以這時候在暫存區裡的資料還是你在第 2 步時候加進來的那個檔案。</p>
+<p>如果確定這個修改是你要的，就請再次使用 git add abc.txt 指令，再把 abc.txt 加至暫存區。</p>
+<p>豆知識<br>其實這樣的動作會產生一些 Unreachable 的沒人愛邊緣物件，這部份算是比較進階的內容，有興趣可參閱「【冷知識】你知道 Git 有資源回收機制嗎？」章節內容。</p>
+<p>【冷知識】”–all” 跟 “.” 參數有什麼不一樣？<br>有時候會看到別人說「git add . 指令也可以把所有的檔案全部加到暫存區喔！」，這樣的說法其實不完全正確，這得看以下幾種情況而決定：</p>
+<ol>
+<li>Git 版本<br>在比較舊版本（1.x 版）的 Git， git add . 這個指令會把「新增的檔案」（也就是 Untracked 狀態的檔案）以及有「修改過的檔案」加到暫存區沒錯，但是不會處理「刪除檔案」的行為。讓我畫個表格簡單說明一下：</li>
+</ol>
+<p>使用參數    新增檔案    修改檔案    刪除檔案<br>–all    O    O    O<br>.    O    O    X<br>不過，在 Git 2.x 版之後變成這樣：</p>
+<p>使用參數    新增檔案    修改檔案    刪除檔案<br>–all    O    O    O<br>.    O    O    O<br>也就是說，在 Git 2.x 之後，這兩個參數在功能上就沒什麼差別了。</p>
+<ol start="2">
+<li>執行指令時候的目錄位置<br>舉個例子來說：</li>
+</ol>
+<p>image</p>
+<p>在專案的根目錄的 index.html 以及在 css 目錄的 main.css 都有修改，如果是在根目錄執行 git add .，這兩個檔案都會被加進暫存區，但如果是在 css 目錄下執行，僅會加入 main.css，index.html 的狀態不會改變。</p>
+<p>那是因為 git add . 這個指令會把目前當下這個目錄，以及它的子目錄、子子目錄、子子子目錄…裡的異動全部加到暫存區，但在這個目錄的以外的就不歸它管了。而 git add –all 指令就沒這個問題，這個指令不管在專案的哪一層目錄執行，效果都是一樣的，在這個專案裡所有的異動都會被加至暫存區。</p>
+<p>所以，回到原來的問題「–all 跟 . 參數有什麼不一樣？」，答案會跟所使用的 Git 版本不同以及執行指令時的目錄而有所差異。</p>
+<p>把暫存區的內容提交到倉庫裡存檔<br>如果僅是透過 git add 指令把異動加到暫存區是不夠的，這樣還不算是完成整個流程。要讓暫存區的內容永久的存下來的話，使用的是 git commit 指令：</p>
+<p>$ git commit -m “init commit”<br>[master (root-commit) dfccf0c] init commit<br> 1 file changed, 1 insertion(+)<br> create mode 100644 welcome.html<br>在後面加上的 -m “init commit” 是指要要說明「你在這次的 Commit 做了什麼事」，只要使用簡單、清楚的文字說明就好，中、英文都可，重點是清楚，讓不久之後的你或是你的同事能很快的明白就行了。</p>
+<p>如果是使用 SourceTree，可點擊左上角的「Commit」按鈕，就可以開始輸入訊息：</p>
+<p>image</p>
+<p>輸入完訊息，按下右下角的「Commit」按鈕，即可完成這次的 Commit。</p>
+<p>當完成了這個動作後，對 Git 來說就是「把暫存區的東西存放到儲存庫（Repository）裡」，翻譯成白話文就是「我完成一個存檔（或備份）的動作了」，也是建立了一個我們在第一個章節所提到的「版本」。關於儲存庫，我們會在下個章節「工作區、暫存區與儲存庫」介紹。</p>
+<p>注意！<br>要完成 Commit 指令才算是完成整個流程喔！</p>
+<p>到底 Commit 了哪些東西？<br>請先記住一個很重要的觀念：「Git 每次的 Commit 都只會處理暫存區（Staging Area）裡的內容」。也就是說，如果在執行 git commit 指令的時候，那些還沒被加到暫存區裡的檔案，就不會被 Commit 到儲存庫裡。</p>
+<p>舉例來說，如果你新增了一個檔案，但卻沒有執行 git add 指令把這個檔案加至暫存區的話，在執行 git commit 指令的時候那個檔案就會被無視喔。</p>
+<p>那個訊息是什麼？很重要嗎？<br>對，很重要！很重要！很重要！（因為重要所以要說三次）</p>
+<p>在 Commit 的時候，如果沒有輸入這個訊息，Git 預設是不會讓你完成 Commit 這件事的。它最主要的目的就是告訴你自己以及其它人「這次的修改做了什麼」。以下是幾點關於訊息的建議：</p>
+<p>儘量不要使用太過情緒性的字眼（我知道開發者有時候工作會有低潮或遇到澳州來的客人），避免不必要的問題。<br>英文、中文都沒關係，重點是要簡單、清楚。<br>儘量不要使用像 bug fixed 這樣模糊的描述，因為沒人知道你修了什麼 bug。但如果有搭配其它的系統使用，則可使用 #34 bug fixed，因為這樣可以知道這次的 Commit 修正了第 34 號的 bug。<br>等等，我怎麼跳出一個奇怪的視窗了<br>在執行 commit 指令時，如果沒有在後面加上訊息參數，預設會跳出一個黑黑的畫面，那個就是傳說中的編輯器 - Vim。那是個對新手不太友善的編輯器，各位可參考「超精簡 Vim 操作介紹」章節的介紹，或是直接使用 SourceTree 之類的圖形介面軟體來處理輸入提交訊息的問題。</p>
+<p>【冷知識】一定要有東西才能 Commit 嗎？<br>只要加上 –allow-empty 參數，沒東西也是可以 Commit 的：</p>
+<p>$ git commit –allow-empty -m “空的”<br>[master 76a5b84] 空的</p>
+<p>$ git commit –allow-empty -m “空的”<br>[master f4f568c] 空的</p>
+<p>$ git commit –allow-empty -m “空的”<br>[master 7653117] 空的<br>這樣就做了 3 個空的 Commit 出來，基本上這沒什麼意義，但有時候我們在上 Git 課的時候就會滿方便的，可以不用新增檔案就快速產生 Commit 來練習合併。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/09/git/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-contact" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -491,6 +624,329 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/09/06/config/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-git 命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/06/git 命令/">git命令</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/06/git 命令/" class="archive-article-date">
+  	<time datetime="2019-09-06T05:29:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>git 常用命令详解<br>0.27<br>2017.04.11 17:33:05<br>字数 2140<br>阅读 11841<br>一、 Git 命令初识<br>在正式介绍Git命令之前，先介绍一下Git 的基本命令和操作，对Git命令有一个总体的认识</p>
+<p>示例：从Git 版本库的初始化，通常有两种方式：<br>1）git clone：这是一种较为简单的初始化方式，当你已经有一个远程的Git版本库，只需要在本地克隆一份</p>
+<p>例如：git clone git://github.com/someone/some_project.git some_project<br>上面的命令就是将’git://github.com/someone/some_project.git’这个URL地址的远程版本库，完全克隆到本地some_project目录下</p>
+<p>2）git init 和 git remote：这种方式稍微复杂一些，当你本地创建了一个工作目录，你可以进入这个目录，使用’git init’命令进行初始化；Git以后就会对该目录下的文件进行版本控制，这时候如果你需要将它放到远程服务器上，可以在远程服务器上创建一个目录，并把可访问的URL记录下来，此时你就可以利用’git remote add’命令来增加一个远程服务器端，</p>
+<p>例如：git remote add origin git://github.com/someone/another_project.git<br>上面的命令就会增加URL地址为’git://github.com/someone/another_project.git’，名称为origin的远程服务器，以后提交代码的时候只需要使用 origin别名即可</p>
+<p>二、 Git 常用命令<br>1、远程仓库相关命令</p>
+<p>检出仓库：$ git clone git://github.com/jquery/jquery.git<br>查看远程仓库：$ git remote -v<br>添加远程仓库：$ git remote add [name] [url]<br>删除远程仓库：$ git remote rm [name]<br>修改远程仓库：$ git remote set-url –push [name] [newUrl]<br>拉取远程仓库：$ git pull [remoteName] [localBranchName]<br>推送远程仓库：$ git push [remoteName] [localBranchName]</p>
+<p>如果想把本地的某个分支test提交到远程仓库，并作为远程仓库的master分支，或者作为另外一个名叫test的分支，如下：</p>
+<p>$git push origin test:master // 提交本地test分支作为远程的master分支<br>$git push origin test:test // 提交本地test分支作为远程的test分支</p>
+<p>2、分支(branch)操作相关命令</p>
+<p>查看本地分支：$ git branch</p>
+<p>查看远程分支：$ git branch -r</p>
+<p>创建本地分支：$ git branch [name] —-注意新分支创建后不会自动切换为当前分支</p>
+<p>切换分支：$ git checkout [name]</p>
+<p>创建新分支并立即切换到新分支：$ git checkout -b [name]</p>
+<p>删除分支：$ git branch -d [name] —- -d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项</p>
+<p>合并分支：$ git merge [name] —-将名称为[name]的分支与当前分支合并</p>
+<p>创建远程分支(本地分支push到远程)：$ git push origin [name]</p>
+<p>删除远程分支：$ git push origin :heads/[name] 或 $ git push origin :[name]</p>
+<p>创建空的分支：(执行命令之前记得先提交你当前分支的修改，否则会被强制删干净没得后悔)</p>
+<p>$git symbolic-ref HEAD refs/heads/[name]</p>
+<p>$rm .git/index</p>
+<p>$git clean -fdx</p>
+<p>3、版本(tag)操作相关命令</p>
+<p>查看版本：$ git tag</p>
+<p>创建版本：$ git tag [name]</p>
+<p>删除版本：$ git tag -d [name]</p>
+<p>查看远程版本：$ git tag -r</p>
+<p>创建远程版本(本地版本push到远程)：$ git push origin [name]</p>
+<p>删除远程版本：$ git push origin :refs/tags/[name]</p>
+<p>合并远程仓库的tag到本地：$ git pull origin –tags</p>
+<p>上传本地tag到远程仓库：$ git push origin –tags</p>
+<p>创建带注释的tag：$ git tag -a [name] -m ‘yourMessage’</p>
+<p>4、子模块(submodule)相关操作命令</p>
+<p>添加子模块：$ git submodule add [url] [path]</p>
+<p>如：$git submodule add git://github.com/soberh/ui-libs.git src/main/webapp/ui-libs</p>
+<p>初始化子模块：$ git submodule init —-只在首次检出仓库时运行一次就行</p>
+<p>更新子模块：$ git submodule update —-每次更新或切换分支后都需要运行一下</p>
+<p>删除子模块：（分4步走哦）</p>
+<p>$ git rm –cached [path]</p>
+<p>编辑“.gitmodules”文件，将子模块的相关配置节点删除掉</p>
+<p>编辑“ .git/config”文件，将子模块的相关配置节点删除掉</p>
+<p>手动删除子模块残留的目录</p>
+<p>5、忽略一些文件、文件夹不提交</p>
+<p>在仓库根目录下创建名称为“.gitignore”的文件，写入不需要的文件夹名或文件，每个元素占一行即可，如</p>
+<p>target</p>
+<p>bin</p>
+<p>*.db</p>
+<p>附： Git 常用命令速查<br>git branch 查看本地所有分支</p>
+<p>git status 查看当前状态</p>
+<p>git commit 提交</p>
+<p>git branch -a 查看所有的分支</p>
+<p>git branch -r 查看远程所有分支</p>
+<p>git commit -am “init” 提交并且加注释</p>
+<p>git remote add origin <a href="mailto:git@192.168.1.119" target="_blank" rel="noopener">git@192.168.1.119</a>:ndshow</p>
+<p>git push origin master 将文件给推到服务器上</p>
+<p>git remote show origin 显示远程库origin里的资源</p>
+<p>git push origin master:develop</p>
+<p>git push origin master:hb-dev 将本地库与服务器上的库进行关联</p>
+<p>git checkout –track origin/dev 切换到远程dev分支</p>
+<p>git branch -D master develop 删除本地库develop</p>
+<p>git checkout -b dev 建立一个新的本地分支dev</p>
+<p>git merge origin/dev 将分支dev与当前分支进行合并</p>
+<p>git checkout dev 切换到本地dev分支</p>
+<p>git remote show 查看远程库</p>
+<p>git add .</p>
+<p>git rm 文件名(包括路径) 从git中删除指定文件</p>
+<p>git clone git://github.com/schacon/grit.git 从服务器上将代码给拉下来</p>
+<p>git config –list 看所有用户</p>
+<p>git ls-files 看已经被提交的</p>
+<p>git rm [file name] 删除一个文件</p>
+<p>git commit -a 提交当前repos的所有的改变</p>
+<p>git add [file name] 添加一个文件到git index</p>
+<p>git commit -v 当你用－v参数的时候可以看commit的差异</p>
+<p>git commit -m “This is the message describing the commit” 添加commit信息</p>
+<p>git commit -a -a是代表add，把所有的change加到git index里然后再commit</p>
+<p>git commit -a -v 一般提交命令</p>
+<p>git log 看你commit的日志</p>
+<p>git diff 查看尚未暂存的更新</p>
+<p>git rm a.a 移除文件(从暂存区和工作区中删除)</p>
+<p>git rm –cached a.a 移除文件(只从暂存区中删除)</p>
+<p>git commit -m “remove” 移除文件(从Git中删除)</p>
+<p>git rm -f a.a 强行移除修改后文件(从暂存区和工作区中删除)</p>
+<p>git diff –cached 或 $ git diff –staged 查看尚未提交的更新</p>
+<p>git stash push 将文件给push到一个临时空间中</p>
+<p>git stash pop 将文件从临时空间pop下来</p>
+<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+<p>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:username/Hello-World.git</p>
+<p>git push origin master 将本地项目给提交到服务器中</p>
+<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+<p>git pull 本地与服务器端同步</p>
+<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+<p>git push (远程仓库名) (分支名) 将本地分支推送到服务器上去。</p>
+<p>git push origin server fix:awesome branch</p>
+<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+<p>git fetch 相当于是从远程获取最新版本到本地，不会自动merge</p>
+<p>git commit -a -m “log_message” (-a是提交所有改动，-m是加入log信息) 本地修改同步至服务器端 ：</p>
+<p>git branch branch_0.1 master 从主分支master创建branch_0.1分支</p>
+<p>git branch -m branch_0.1 branch_1.0 将branch_0.1重命名为branch_1.0</p>
+<p>git checkout branch_1.0/master 切换到branch_1.0/master分支</p>
+<p>du -hs</p>
+<p>git branch 删除远程branch</p>
+<p>git push origin:branch_remote_name</p>
+<p>git branch -r -d branch_remote_name</p>
+<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+<p>初始化版本库，并提交到远程服务器端</p>
+<p>mkdir WebApp</p>
+<p>cd WebApp</p>
+<p>git init本地初始化</p>
+<p>touch README</p>
+<p>git add README添加文件</p>
+<p>git commit -m ‘first commit’</p>
+<p>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:daixu/WebApp.git增加一个远程服务器端</p>
+<p>上面的命令会增加URL地址为‘git@github.com:daixu/WebApp.git’，名称为origin的远程服务器库，以后提交代码的时候只需要使用 origin别名即可</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/06/git 命令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-demo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/06/demo/">demo</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/06/demo/" class="archive-article-date">
+  	<time datetime="2019-09-06T05:29:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/06/demo/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-cat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/06/cat/">cat</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/06/cat/" class="archive-article-date">
+  	<time datetime="2019-09-06T05:29:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>It’s a lovely cat<br><img src="/2019/09/06/cat/cat.jpeg" alt="cat"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/06/cat/">展开全文 >></a>
         </p>
       
 
@@ -1339,142 +1795,6 @@ Raw String Notation
 
 
   
-    <article id="post-cat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/06/cat/">cat</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/06/cat/" class="archive-article-date">
-  	<time datetime="2019-09-06T05:29:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>It’s a lovely cat<br><img src="/2019/09/06/cat/cat.jpeg" alt="cat"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/06/cat/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-demo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/06/demo/">demo</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/06/demo/" class="archive-article-date">
-  	<time datetime="2019-09-06T05:29:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/06/demo/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="coding-ssl失败" class="article article-type-coding  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1529,146 +1849,6 @@ Raw String Notation
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/09/06/ssl失败/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="hexo-error" class="article article-type-hexo  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/05/error/">error</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/05/error/" class="archive-article-date">
-  	<time datetime="2019-09-05T08:27:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>hexo d后 ERROR Deployer not found: git</p>
-<p>$ hexo d<br>ERROR Deployer not found: git</p>
-<p>npm install –save hexo-deployer-git</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/05/error/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="problem-mac" class="article article-type-problem  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/05/mac/">mac</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/05/mac/" class="archive-article-date">
-  	<time datetime="2019-09-05T08:18:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>mac 上安装hexo出错,报错<br>0.343<br>2017.10.14 14:16:11<br>字数 38<br>阅读 1298<br>可以执行下面命令：<br>sudo npm install –unsafe-perm –verbose -g hexo</p>
-<p>然后，就可以<br>hexo version<br>成功看到版本号，安装成功！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/05/mac/">展开全文 >></a>
         </p>
       
 
